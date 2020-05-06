@@ -1,6 +1,7 @@
 <?php
+namespace Codingame;
 
-class Pac {
+class Game {
 
     public function play(): string
     {

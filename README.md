@@ -5,25 +5,14 @@ Tools for codingame challenges
 * blackfire
 
 # Setup 
-> Note: setup the blackfire Credentials in the docker-compose file
+> Note: setup the blackfire Credentials in the .env
 
-###docker-compose
+###.env file (copy .env.dist and rename)
 ```yml
-version: '3'
-services:
-  codingame:
-    build:
-      context: ./
-    volumes:
-      - "./:/var/www/codingame:cached"
-      - "~/.composer:/var/composer:cached"
-    ports:
-      - "8080:80"
-    environment:
-      BLACKFIRE_CLIENT_ID: ~
-      BLACKFIRE_CLIENT_TOKEN: 
-      BLACKFIRE_SERVER_ID: ~
-      BLACKFIRE_SERVER_TOKEN: ~
+BLACKFIRE_CLIENT_ID=client-id-credentials
+BLACKFIRE_CLIENT_TOKEN=client-token-credentials
+BLACKFIRE_SERVER_ID=server-id-credentials
+BLACKFIRE_SERVER_TOKEN=token-id-credentials
 ```
 
 ###Run the container 
@@ -37,11 +26,15 @@ $ docker-compose exec codingame composer install --prefer-dist
 
 ### Run unit test
 ```
-$ docker-compose exec codingame vndor/bin/phpunit
+$ docker-compose exec codingame vendor/bin/phpunit
 ```
 
 ### Run blackfire profiler
 ```
-$ docker-compose exec codingame blackfire run php src/index.php
+$ docker-compose exec codingame blackfire run php index.php
 ```
 
+### command to generate a single PHP script containing all of the classes required
+```
+$ docker-compose exec codingame php vendor/bin/classpreloader compile --config=config/config.php --output=output.php
+```
