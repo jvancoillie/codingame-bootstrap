@@ -1,0 +1,15 @@
+version: '3'
+services:
+  codingame:
+    build:
+      context: ./
+    volumes:
+      - "./:/var/www/codingame:cached"
+      - "~/.composer:/var/composer:cached"
+    ports:
+      - "8080:80"
+    environment:
+      BLACKFIRE_CLIENT_ID: ~
+      BLACKFIRE_CLIENT_TOKEN:
+      BLACKFIRE_SERVER_ID: ~
+      BLACKFIRE_SERVER_TOKEN: ~
